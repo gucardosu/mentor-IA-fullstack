@@ -4,6 +4,7 @@ import Cadastro from "../pages/Register/Register";
 import Home from "../pages/Home/Home";
 import RotaProtegida from "./RotaProtegida";
 
+
 export default function AppRoutes() {
   return (
     <Routes>
