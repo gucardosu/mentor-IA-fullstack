@@ -1,10 +1,15 @@
-import styles from "./ButtonWithIcon.module.css";
+import "./ButtonWithIcon.css";
 
-export function ButtonWithIcon({ title, icon, onClick, variant = "primary" }) {
+export default function ButtonWithIcon({
+  title,
+  icon,
+  variant = "default",
+  onClick,
+}) {
   return (
-    <button className={`${styles.button} ${styles[variant]}`} onClick={onClick}>
+    <button className={`btn-with-icon ${variant}`} onClick={onClick}>
+      {title}
       {icon}
-      <span>{title}</span>
     </button>
   );
 }
