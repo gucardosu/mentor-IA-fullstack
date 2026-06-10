@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Cadastro from "../pages/Register/Register";
-import Home from "../pages/Home";
+import Home from "../pages/Home/Home";
 import MentorIA from "../pages/MentorIA/MentorIA";
 import RotaProtegida from "./RotaProtegida";
 
