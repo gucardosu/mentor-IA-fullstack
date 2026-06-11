@@ -1,0 +1,27 @@
+.select-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.select-label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #15325A;
+}
+
+.select-input {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #EAEAEA;
+  background-color: #F8F9FA;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.select-input:focus {
+  border-color: #3B82F6;
+}

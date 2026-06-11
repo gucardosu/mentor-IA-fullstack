@@ -1,26 +1,12 @@
+import "./Avatar.css";
+
 export default function Avatar({ src, alt, size = "100px" }) {
   return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        borderRadius: "50%",
-        overflow: "hidden",
-        backgroundColor: "#EAEAEA",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        border: "2px solid #3B82F6",
-      }}
-    >
+    <div className="avatar-container" style={{ width: size, height: size }}>
       {src ? (
-        <img
-          src={src}
-          alt={alt}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+        <img className="avatar-image" src={src} alt={alt} />
       ) : (
-        <span style={{ color: "#6B7280", fontSize: "12px" }}>Sem foto</span>
+        <span className="avatar-placeholder">Sem foto</span>
       )}
     </div>
   );
