@@ -15,7 +15,7 @@ export default function Sidebar() {
         <li className="active" onClick={() => navigate("/home")}>
           Início
         </li>
-        <li>Minhas trilhas</li>
+        <li onClick={() => navigate("/editar-trilha")}>Minhas trilhas</li>
         <li onClick={() => navigate("/mentoria")}>Mentor IA</li>
         <li>Perfil</li>
       </ul>

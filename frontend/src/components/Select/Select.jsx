@@ -1,13 +1,19 @@
-import "./Avatar.css";
+import "./Select.css";
 
-export default function Avatar({ src, alt, size = "100px" }) {
+export default function Select({ label, options, value, onChange }) {
   return (
-    <div className="avatar-container" style={{ width: size, height: size }}>
-      {src ? (
-        <img className="avatar-image" src={src} alt={alt} />
-      ) : (
-        <span className="avatar-placeholder">Sem foto</span>
-      )}
+    <div className="select-container">
+      {label && <label className="select-label">{label}</label>}
+      <select className="select-input" value={value} onChange={onChange}>
+        <option value="" disabled>
+          Selecione uma opção...
+        </option>
+        {options.map((opcao, index) => (
+          <option key={index} value={opcao.valor}>
+            {opcao.texto}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
