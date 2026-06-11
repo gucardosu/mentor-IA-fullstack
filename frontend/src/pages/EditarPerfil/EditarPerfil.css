@@ -1,0 +1,46 @@
+.perfil-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.perfil-info {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.perfil-nome {
+  font-size: 24px;
+  color: #15325A;
+  margin: 0;
+  font-weight: bold;
+}
+
+.perfil-email-texto {
+  color: #6B7280;
+  font-size: 14px;
+  margin: 4px 0 0 0;
+}
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.perfil-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #EAEAEA;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.botoes-direita {
+  display: flex;
+  gap: 16px;
+}
