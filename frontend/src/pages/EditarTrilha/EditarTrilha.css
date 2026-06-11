@@ -1,0 +1,31 @@
+.editar-trilha-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.nivel-conhecimento-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nivel-conhecimento-label {
+  font-weight: bold;
+  color: #15325A;
+}
+
+.nivel-botoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid #EAEAEA;
+}
