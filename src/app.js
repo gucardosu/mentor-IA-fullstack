@@ -5,6 +5,7 @@ import sequelize from "./config/database.js";
 import "./models/index.js";
 import authRouter from "./routes/auth.routes.js";
 import usuarioRouter from "./routes/usuario.routes.js";
+import trilhaRouter from "./routes/trilha.routes.js";
 import helmet from "helmet";
 import { limiteGlobal } from "./config/rateLimit.config.js";
 
@@ -23,6 +24,7 @@ app.use(express.json());
 
 app.use("/auth", authRouter);
 app.use("/usuario", usuarioRouter);
+app.use("/trilhas", trilhaRouter);
 
 sequelize.sync({ alter: true }).then(() => {
   app.listen(process.env.PORT, () =>
