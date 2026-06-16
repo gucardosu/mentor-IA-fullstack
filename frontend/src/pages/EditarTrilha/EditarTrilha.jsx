@@ -26,9 +26,35 @@ export default function EditarTrilha() {
   const handleSalvar = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    alert("Trilha cadastrada com sucesso!");
-    setIsLoading(false);
+
+    const payload = {
+      nome: `Trilha de ${area}`,
+      area: area,
+      nivelAtual: nivel,
+      nivelObjetivo: "Avançado",
+      usuarioId: 1,
+    };
+
+    try {
+      const resposta = await fetch("http://localhost:3000/trilhas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (resposta.ok) {
+        alert("Trilha cadastrada no banco de dados com sucesso!");
+        navigate("/home");
+      } else {
+        const dados = await resposta.json();
+        alert(`Erro: ${dados.erro || "Não foi possível cadastrar a trilha."}`);
+      }
+    } catch (erro) {
+      console.error("Erro na conexão com a API:", erro);
+      alert("Servidor offline. Verifique se o back-end está rodando.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
