@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronRight, Send, Bot, User } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import { perguntarGemini } from "../../services/geminiService";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import BackButton from "../../components/BackButton/BackButton";
@@ -12,10 +14,11 @@ export default function MentorIA() {
     {
       id: 1,
       sender: "bot",
-      text: "Olá! Sou o MentorIA. Como posso ajudar nos seus estudos hoje?",
+      text: "Olá! Sou a MentorIA. Como posso ajudar nos seus estudos hoje?",
     },
   ]);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const messagesEndRef = useRef(null);
 
@@ -23,24 +26,37 @@ export default function MentorIA() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [mensagens]);
 
-  const enviarMensagem = (texto) => {
-    if (!texto.trim()) return;
+  const enviarMensagem = async (texto) => {
+    if (!texto.trim() || isLoading) return;
 
-    const novaMensagem = { id: Date.now(), sender: "user", text: texto };
-
-    setMensagens((prev) => [...prev, novaMensagem]);
+    const novaMensagemUsuario = { id: Date.now(), sender: "user", text: texto };
+    setMensagens((prev) => [...prev, novaMensagemUsuario]);
     setInput("");
+    setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const respostaIA = await perguntarGemini(texto);
+
+      const novaMensagemBot = {
+        id: Date.now() + 1,
+        sender: "bot",
+        text: respostaIA,
+      };
+
+      setMensagens((prev) => [...prev, novaMensagemBot]);
+    } catch (erro) {
+      console.error("Erro ao chamar o Gemini:", erro);
       setMensagens((prev) => [
         ...prev,
         {
           id: Date.now() + 1,
           sender: "bot",
-          text: "Anotado! Em breve estarei conectado à IA para te responder de verdade. 🚀",
+          text: "Desculpe, tive um problema de conexão com a API. Poderia tentar novamente?",
         },
       ]);
-    }, 1000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -70,10 +86,30 @@ export default function MentorIA() {
                     {msg.sender === "bot" && (
                       <div className="message-name">MentorIA</div>
                     )}
-                    <div className="message-box">{msg.text}</div>
+
+                    <div className="message-box">
+                      {msg.sender === "bot" ? (
+                        <ReactMarkdown>{msg.text}</ReactMarkdown>
+                      ) : (
+                        msg.text
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
+
+              {isLoading && (
+                <div className="message bot">
+                  <div className="avatar">
+                    <Bot size={20} />
+                  </div>
+                  <div>
+                    <div className="message-name">MentorIA</div>
+                    <div className="message-box">Digitando...</div>
+                  </div>
+                </div>
+              )}
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -91,7 +127,11 @@ export default function MentorIA() {
               <ButtonWithIcon
                 title="Perguntar mais"
                 icon={<ChevronRight size={18} />}
-                onClick={() => enviarMensagem("Perguntar mais")}
+                onClick={() =>
+                  enviarMensagem(
+                    "Me dê dicas de como perguntar melhor para uma IA.",
+                  )
+                }
               />
             </div>
 
@@ -107,8 +147,13 @@ export default function MentorIA() {
                 placeholder="Digite sua dúvida aqui..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                disabled={isLoading}
               />
-              <button type="submit" className="btn-send">
+              <button
+                type="submit"
+                className="btn-send"
+                disabled={isLoading || !input.trim()}
+              >
                 <Send size={20} />
               </button>
             </form>
