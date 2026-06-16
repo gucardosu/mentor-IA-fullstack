@@ -7,6 +7,8 @@ import authRouter from "./routes/auth.routes.js";
 import usuarioRouter from "./routes/usuario.routes.js";
 import trilhaRouter from "./routes/trilha.routes.js";
 import planoRouter from "./routes/planoEstudo.routes.js";
+import avaliacaoRouter from "./routes/historicoAvaliacao.routes.js";
+import chatRouter from "./routes/historicoChat.routes.js";
 import helmet from "helmet";
 import { limiteGlobal } from "./config/rateLimit.config.js";
 
@@ -17,7 +19,7 @@ app.use(
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 
 app.use(limiteGlobal);
@@ -27,9 +29,11 @@ app.use("/auth", authRouter);
 app.use("/usuario", usuarioRouter);
 app.use("/trilhas", trilhaRouter);
 app.use("/planos", planoRouter);
+app.use("/avaliacoes", avaliacaoRouter);
+app.use("/chat", chatRouter);
 
 sequelize.sync({ alter: true }).then(() => {
   app.listen(process.env.PORT, () =>
-    console.log(`Servidor rodando na porta ${process.env.PORT}`)
+    console.log(`Servidor rodando na porta ${process.env.PORT}`),
   );
 });
