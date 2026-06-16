@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import sequelize from "./config/database.js";
-import "./models/usuario.model.js";
+import "./models/index.js";
 import authRouter from "./routes/auth.routes.js";
 import usuarioRouter from "./routes/usuario.routes.js";
 import helmet from "helmet";
@@ -15,7 +15,7 @@ app.use(
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  }),
+  })
 );
 
 app.use(limiteGlobal);
@@ -26,6 +26,6 @@ app.use("/usuario", usuarioRouter);
 
 sequelize.sync({ alter: true }).then(() => {
   app.listen(process.env.PORT, () =>
-    console.log(`Servidor rodando na porta ${process.env.PORT}`),
+    console.log(`Servidor rodando na porta ${process.env.PORT}`)
   );
 });

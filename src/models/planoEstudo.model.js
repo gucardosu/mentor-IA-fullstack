@@ -1,7 +1,7 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
-const PlanoEstudo = sequelize.define("PlanoEstudo", {
+export const PlanoEstudo = sequelize.define("PlanoEstudo", {
   titulo: { type: DataTypes.STRING, allowNull: false },
   descricao: { type: DataTypes.TEXT },
   tempoEstimado: { type: DataTypes.INTEGER, allowNull: false }, // Em horas
@@ -11,5 +11,3 @@ const PlanoEstudo = sequelize.define("PlanoEstudo", {
     defaultValue: "PENDENTE",
   },
 });
-
-module.exports = PlanoEstudo;

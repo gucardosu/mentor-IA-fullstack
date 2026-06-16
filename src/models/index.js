@@ -1,37 +1,31 @@
-const sequelize = require('../config/database');
+import sequelize from '../config/database.js';
 
-const Usuario = require('./usuario.model');
-const Trilha = require('./trilha.model');
-const PlanoEstudo = require('./planoEstudo.model');
-const HistoricoAvaliacao = require('./historicoAvaliacao.model');
-const HistoricoChat = require('./historicoChat.model');
+import { User } from './usuario.model.js';
+import { Trilha } from './trilha.model.js';
+import { PlanoEstudo } from './planoEstudo.model.js';
+import { HistoricoAvaliacao } from './historicoAvaliacao.model.js';
+import { HistoricoChat } from './historicoChat.model.js';
 
+// 2. Definir os Relacionamentos (1:N)
 
-// Usuário 1:N Trilhas
-Usuario.hasMany(Trilha, { foreignKey: 'usuarioId', as: 'trilhas' });
-Trilha.belongsTo(Usuario, { foreignKey: 'usuarioId', as: 'usuario' });
+// User 1:N Trilhas
+User.hasMany(Trilha, { foreignKey: 'usuarioId', as: 'trilhas' });
+Trilha.belongsTo(User, { foreignKey: 'usuarioId', as: 'usuario' });
 
 // Trilha 1:N Planos de Estudo
 Trilha.hasMany(PlanoEstudo, { foreignKey: 'trilhaId', as: 'planos' });
 PlanoEstudo.belongsTo(Trilha, { foreignKey: 'trilhaId', as: 'trilha' });
 
-// Usuário 1:N Histórico de Avaliação
-Usuario.hasMany(HistoricoAvaliacao, { foreignKey: 'usuarioId', as: 'avaliacoes' });
-HistoricoAvaliacao.belongsTo(Usuario, { foreignKey: 'usuarioId' });
+// User 1:N Histórico de Avaliação
+User.hasMany(HistoricoAvaliacao, { foreignKey: 'usuarioId', as: 'avaliacoes' });
+HistoricoAvaliacao.belongsTo(User, { foreignKey: 'usuarioId' });
 
-// Trilha 1:N Histórico de Avaliação (Para saber de qual trilha foi a prova)
+// Trilha 1:N Histórico de Avaliação
 Trilha.hasMany(HistoricoAvaliacao, { foreignKey: 'trilhaId' });
 HistoricoAvaliacao.belongsTo(Trilha, { foreignKey: 'trilhaId' });
 
-// Usuário 1:N Histórico de Chat
-Usuario.hasMany(HistoricoChat, { foreignKey: 'usuarioId', as: 'conversas' });
-HistoricoChat.belongsTo(Usuario, { foreignKey: 'usuarioId' });
+// User 1:N Histórico de Chat
+User.hasMany(HistoricoChat, { foreignKey: 'usuarioId', as: 'conversas' });
+HistoricoChat.belongsTo(User, { foreignKey: 'usuarioId' });
 
-module.exports = {
-  sequelize,
-  Usuario,
-  Trilha,
-  PlanoEstudo,
-  HistoricoAvaliacao,
-  HistoricoChat
-};
+export { sequelize, User, Trilha, PlanoEstudo, HistoricoAvaliacao, HistoricoChat };
