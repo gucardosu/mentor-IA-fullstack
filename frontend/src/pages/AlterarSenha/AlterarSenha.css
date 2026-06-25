@@ -1,0 +1,26 @@
+.senha-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.titulo-senha {
+  color: #15325A;
+  font-size: 24px;
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.alterar-senha-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.senha-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+  border-top: 1px solid #EAEAEA;
+  padding-top: 24px;
+}

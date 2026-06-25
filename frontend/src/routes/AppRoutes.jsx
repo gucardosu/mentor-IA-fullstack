@@ -6,6 +6,7 @@ import MentorIA from "../pages/MentorIA/MentorIA";
 import RotaProtegida from "./RotaProtegida";
 import EditarTrilha from "../pages/EditarTrilha/EditarTrilha";
 import EditarPerfil from "../pages/EditarPerfil/EditarPerfil";
+import AlterarSenha from "../pages/AlterarSenha/AlterarSenha";
 
 export default function AppRoutes() {
   return (
@@ -47,6 +48,9 @@ export default function AppRoutes() {
           </RotaProtegida>
         }
       />
+
+      <Route path="/editar-perfil" element={<EditarPerfil />} />
+      <Route path="/alterar-senha" element={<AlterarSenha />} />
     </Routes>
   );
 }
