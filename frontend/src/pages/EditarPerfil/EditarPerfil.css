@@ -1,32 +1,44 @@
-.perfil-header {
+.perfil-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.titulo-perfil {
+  color: #15325A;
+  font-size: 24px;
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.perfil-info-display {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 24px;
   margin-bottom: 32px;
 }
 
-.perfil-info {
-  text-align: center;
-  margin-top: 16px;
-}
-
-.perfil-nome {
-  font-size: 24px;
+.perfil-textos h3 {
+  margin: 0 0 8px 0;
   color: #15325A;
+  font-size: 20px;
+}
+
+.perfil-textos p {
   margin: 0;
-  font-weight: bold;
-}
-
-.perfil-email-texto {
   color: #6B7280;
-  font-size: 14px;
-  margin: 4px 0 0 0;
+  font-size: 16px;
 }
 
-.perfil-form {
+.divisor {
+  border: none;
+  border-top: 1px solid #EAEAEA;
+  margin: 32px 0;
+}
+
+.editar-perfil-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .perfil-actions {
@@ -34,13 +46,9 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid #EAEAEA;
-  flex-wrap: wrap;
-  gap: 16px;
 }
 
-.botoes-direita {
+.action-right {
   display: flex;
   gap: 16px;
 }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft } from "lucide-react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import Card from "../../components/Card/Card";
@@ -8,76 +7,73 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import Avatar from "../../components/Avatar/Avatar";
 import "../../pages/Home/Home.css";
-import "../EditarTrilha/EditarTrilha.css";
 import "./EditarPerfil.css";
 
 export default function EditarPerfil() {
   const navigate = useNavigate();
 
-  const [nome, setNome] = useState("Gustavo Cardoso");
-  const [email, setEmail] = useState("gustavo@email.com");
-  const [isLoading, setIsLoading] = useState(false);
+  // Estados para controlar o formulário
+  const [nome, setNome] = useState("Usuário MentorIA");
+  const [email, setEmail] = useState("usuario@mentoria.com");
 
-  const handleSalvar = async (e) => {
+  const handleSalvar = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    alert("Perfil atualizado com sucesso!");
-    setIsLoading(false);
+    alert("Perfil salvo com sucesso!");
   };
 
   return (
     <div className="home-layout">
       <Sidebar />
-
       <div className="home-main">
         <Header />
 
         <main className="home-content">
-          <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+          <div className="perfil-container">
             <Card>
-              <div className="titulo-card">
-                <ChevronLeft
-                  size={24}
-                  cursor="pointer"
-                  onClick={() => navigate(-1)}
-                />
-                Editar Perfil
-              </div>
+              <h2 className="titulo-perfil">Editar Perfil</h2>
 
-              <div className="perfil-header">
-                <Avatar size="120px" alt="Foto de Perfil" />
-                <div className="perfil-info">
-                  <h2 className="perfil-nome">{nome}</h2>
-                  <p className="perfil-email-texto">{email}</p>
+              {/* Área de exibição exigida na atividade */}
+              <div className="perfil-info-display">
+                <Avatar size="100px" />
+                <div className="perfil-textos">
+                  <h3>{nome}</h3>
+                  <p>{email}</p>
                 </div>
               </div>
 
-              <form className="perfil-form" onSubmit={handleSalvar}>
+              <hr className="divisor" />
+
+              {/* Formulário exigido na atividade */}
+              <form className="editar-perfil-form" onSubmit={handleSalvar}>
                 <Input
-                  label="Nome Completo"
+                  label="Nome Completo:"
                   type="text"
+                  placeholder="Digite seu nome"
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
                 />
 
                 <Input
-                  label="E-mail"
+                  label="E-mail:"
                   type="email"
+                  placeholder="Digite seu e-mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
 
+                {/* Ações exigidas na atividade */}
                 <div className="perfil-actions">
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    onClick={() => navigate("/alterar-senha")}
-                  >
-                    Alterar Senha
-                  </Button>
+                  <div className="action-left">
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      onClick={() => navigate("/alterar-senha")}
+                    >
+                      Alterar Senha
+                    </Button>
+                  </div>
 
-                  <div className="botoes-direita">
+                  <div className="action-right">
                     <Button
                       type="button"
                       variant="secondary"
@@ -85,11 +81,7 @@ export default function EditarPerfil() {
                     >
                       Cancelar
                     </Button>
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      isLoading={isLoading}
-                    >
+                    <Button type="submit" variant="primary">
                       Salvar
                     </Button>
                   </div>
