@@ -7,6 +7,7 @@ import RotaProtegida from "./RotaProtegida";
 import EditarTrilha from "../pages/EditarTrilha/EditarTrilha";
 import EditarPerfil from "../pages/EditarPerfil/EditarPerfil";
 import AlterarSenha from "../pages/AlterarSenha/AlterarSenha";
+import VerificarNivel from "../pages/VerificarNivel/VerificarNivel";
 
 export default function AppRoutes() {
   return (
@@ -51,6 +52,8 @@ export default function AppRoutes() {
 
       <Route path="/editar-perfil" element={<EditarPerfil />} />
       <Route path="/alterar-senha" element={<AlterarSenha />} />
+
+      <Route path="/verificar-nivel" element={<VerificarNivel />} />
     </Routes>
   );
 }

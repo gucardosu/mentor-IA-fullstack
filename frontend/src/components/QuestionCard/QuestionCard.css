@@ -1,0 +1,24 @@
+.question-header {
+  margin-bottom: 16px;
+}
+
+.badge-nivel {
+  background-color: #EAEAEA;
+  color: #15325A;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.question-title {
+  color: #15325A;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.question-options-container {
+  display: flex;
+  flex-direction: column;
+}
